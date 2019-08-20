@@ -295,14 +295,6 @@ function stop {
     echo -e -n "\n[$GREEN*$RESETCOLOR] Starting service dnsmasq"
     /usr/sbin/systemctl start dnsmasq 2>/dev/null || echo -n " (Failed start)"
 
-
-
-    #echo -e "\n$GREEN*$RESETCOLOR Restarting services"
-    #/usr/sbin/systemctl start resolvconf || true
-    #/usr/sbin/systemctl restart resolvconf || true
-    #/usr/sbin/systemctl start dnsmasq || true
-    #/usr/sbin/systemctl start nscd || true
-    #echo -e "$GREEN*$RESETCOLOR It is safe to not worry for dnsmasq and nscd start errors if they are not installed or started already."
     sleep 1
 
 	echo -e "\n\n[${GREEN}i$RESETCOLOR] All traffic is no redirected throught Tor"
