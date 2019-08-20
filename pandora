@@ -13,10 +13,10 @@ set -e
 
 #
 # Lorenzo "EclipseSpark" Faletra <eclipse@frozenbox.org>
-# Rick Visser <https://github.com/RJMVisser>
 #         Parrot Security OS www.parrotsec.org
 #                      GNU/GPL v3
-#
+# Extended:
+# RJMVisser <https://github.com/RJMVisser>
 
 export RED='\033[1;91m'
 export RESETCOLOR='\033[1;00m'
