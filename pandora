@@ -61,13 +61,16 @@ function restore {
 
 
 case "$1" in
-    bomb)
+    "bomb"|"--bomb"|"-b")
         bomb
         ;;
-    restore)
+    "restore"|"--restore"|"-r")
         restore
         ;;
-    *)
+    ""|"help"|"--help"|"-h")
         echo "Usage: "
-        echo "pandora { bomb | restore }"
+        echo "pandora { --bomb or -b | --restore or -r }"
+        ;;
+    *)
+        echo -e "${RED}Input not recognized$RESETCOLOR"
 esac
