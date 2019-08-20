@@ -80,13 +80,23 @@ function init {
 }
 
 function ip {
-    MYIP=$(curl -s https://ipinfo.io/ip)
+    #MYIP=$(curl -s https://ipinfo.io/ip)
+    MYIP=$(curl -s ifconfig.me)
 	echo -e "\nMy ip is:\n"
 	echo "$MYIP"
 	echo -e "\n"
 	notify "My IP is:\n\n$MYIP"
 }
 
+function country {
+    MYCOUNTRY=$(geoiplookup "$(curl -s ifconfig.me)" | sed -r 's/GeoIP Country Edition: //g')
+    #MYCOUNTRY=$(curl -s https://ipvigilante.com/ | jq '.data.country_name')
+    #MYCOUNTRY=${MYCOUNTRY//\"/}
+	echo -e "\nMy country is:\n"
+	echo "$MYCOUNTRY"
+	echo -e "\n"
+	notify "My country is:\n\n$MYCOUNTRY"
+}
 
 
 
@@ -305,7 +315,7 @@ function stop {
 function change {
     exitnode-selector
     sleep 10
-    echo -e " $GREEN*$RESETCOLOR Tor daemon reloaded and forced to change nodes\n"
+    echo -e "[$GREEN*$RESETCOLOR] Tor daemon reloaded and forced to change nodes\n"
     notify "Identity changed - let's dance again!"
     sleep 1
 }
@@ -321,11 +331,14 @@ function status {
     fi
     
     ports="$(netstat -tulpn)"
+    #if [ -n "$($ports | grep -q $TOR_UID)" ]
+    if echo "$ports" | grep -q "$TOR_UID"
+    then
+        echo -e "$ports" | grep "Proto" 
+        echo -e "$ports" | grep "$TOR_UID" 
+    fi
 
-    echo -e "$ports" | grep "Proto" 
-    echo -e "$ports" | grep "$TOR_UID" 
-
-    cat /tmp/anonsurf-tor.log || cat /var/log/tor/log
+    #cat /tmp/anonsurf-tor.log || cat /var/log/tor/log
 }
 
 function dnsstart {
@@ -377,6 +390,9 @@ case "$1" in
 	myip|ip)
 		ip
 	;;
+	mycountry|country)
+		country
+	;;
 	#firefox_tor)
 	#	firefox_tor
 	#;;
@@ -397,14 +413,15 @@ Parrot AnonSurf Module (v 2.0)
     And RJMVisser <https://github.com/RJMVisser/>
 
 	Usage:
-	anonsurf {$GREEN""start$RESETCOLOR|$GREEN""stop$RESETCOLOR|$GREEN""restart$RESETCOLOR|$GREEN""changeid$RESETCOLOR|$GREEN""status$RESETCOLOR|$GREEN""myip$RESETCOLOR|$GREEN""dns$RESETCOLOR}
+	anonsurf {$GREEN""start$RESETCOLOR|$GREEN""stop$RESETCOLOR|$GREEN""restart$RESETCOLOR|$GREEN""changeid$RESETCOLOR|$GREEN""status$RESETCOLOR|$GREEN""myip$RESETCOLOR|$GREEN""mycountry$RESETCOLOR|$GREEN""dns$RESETCOLOR}
 	
     $BLUE start$RESETCOLOR \t - Start system-wide TOR tunnel
     $BLUE stop$RESETCOLOR \t - Stop anonsurf and return to clearnet
     $BLUE restart$RESETCOLOR \t - Combines \"stop\" and \"start\" options
     $BLUE changeid$RESETCOLOR \t - Changes identity restarting TOR
     $BLUE status$RESETCOLOR \t - Check if AnonSurf is working properly
-    $BLUE myip$RESETCOLOR \t - Check your ip and verify your tor connection
+    $BLUE myip$RESETCOLOR \t - Shows current ip
+    $BLUE mycountry$RESETCOLOR \t - Shows current country
     $BLUE dns$RESETCOLOR \t - Replace your DNS with the OpenNIC DNS servers.
 
 Dance like no one's watching. Encrypt like everyone is.

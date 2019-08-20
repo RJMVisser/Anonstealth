@@ -33,6 +33,8 @@ programs "iptables"
 programs "libnotify"
 programs "zenity"
 programs "curl"
+programs "openbsd-netcat"
+
 if [ -n "${install[*]}" ]
 then
     exit
@@ -41,6 +43,10 @@ fi
 case "$1" in
     "install"|"-i"|"--install")
         echo "Installing..."
+        mkdir -p ~/.mozilla/firefox/
+        mkdir -p /etc/pandora
+        cp pandora /usr/bin/pandora
+        tar -xzf tor-profile.tar.gz -C ~/.mozilla/firefox/ 
         mkdir -p /etc/anonsurf
         cp onion.pac /etc/anonsurf/onion.pac
         cp torrc /etc/anonsurf/torrc
@@ -49,12 +55,16 @@ case "$1" in
         cp exitnodes.csv /etc/anonsurf/exitnodes.csv
         cp resolv.conf.opennic /etc/anonsurf/resolv.conf.opennic
         chown root:root -R /etc/anonsurf
+        chown root:root -R /etc/pandora
         chmod 755 /usr/bin/anonsurf
         chmod 755 /usr/bin/exitnode-selector
+        chmod 755 /usr/bin/pandora
         chmod 755 /etc/anonsurf
+        chmod 755 /etc/pandora
         ;;
     "remove"|"-r"|"--remove")
         echo "Uninstalling..."
+        rm -r ~/.mozilla/firefox/b6csghrf.Tor
         rm /usr/bin/anonsurf
         rm /usr/bin/exitnode-selector
         rm -r /etc/anonsurf

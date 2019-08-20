@@ -32,7 +32,7 @@ get_country_code() {
 }
 
 change_country() {
-    echo -e "authenticate \"kuhNygbtfu76fFUbgv\"\nSETCONF ExitNodes={$country_code}\nSETCONF StrictNodes=1\nsignal newnym" | nc localhost -q 1 9051
+    echo -e "authenticate \"kuhNygbtfu76fFUbgv\"\nSETCONF ExitNodes={$country_code}\nSETCONF StrictNodes=1\nsignal newnym" | nc localhost -q 1 9051 
     return 0
 }
 
