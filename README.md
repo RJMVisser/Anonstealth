@@ -1,4 +1,7 @@
 # Tools
+***Bugs:***
+* Installer only works for Arch like distros because the required programs are named differend on Debian like distros
+
 ## Anonsurf
 Anonsurf is a tool that will help you stay anonymous by routing every packet through TOR relay.
 
