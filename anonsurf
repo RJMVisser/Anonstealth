@@ -365,30 +365,30 @@ function dns {
 }
 
 case "$1" in
-	start)
+	"start")
 		zenity --question --text="Do you want anonsurf to kill dangerous applications and clean some application caches?" --width 400 && init
 		start
 	;;
-	stop)
+	"stop")
 		zenity --question --text="Do you want anonsurf to kill dangerous applications and clean some application caches?" --width 400 && init
 		stop
 	;;
-    changeid|change-id|change)
+    "changeid"|"change-id"|"change")
 		change
 	;;
-	status)
+	"status")
 		status
 	;;
-	myip|ip)
+	"myip"|"ip")
 		ip
 	;;
-	mycountry|country)
+	"mycountry"|"country")
 		country
 	;;
 	#firefox_tor)
 	#	firefox_tor
 	#;;
-	restart)
+	"restart")
 		$0 stop
 		sleep 1
 		$0 start

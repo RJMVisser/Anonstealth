@@ -12,28 +12,32 @@ fi
 declare -ga install
 install=()
 
+declare -ga modules
+modules=()
+
 programs()
 {
     if [[ -f "/usr/bin/pacman" ]]; then
-        if [ -z "$(pacman -Q --color always "$1")" ]
-        then
-            install+=("$1")
-        fi
+        modules=("tor" "bleachbit" "iptables" "libnotify" "zenity" "curl" "openbsd-netcat")
+        for i in "${modules[@]}";
+        do
+            if [ -z "$(pacman -Q --color always "$i")" ]
+            then
+                install+=("$i")
+            fi
+        done
     elif [[ -f "/usr/bin/apt" ]]; then
-        
-        if [ "$(dpkg -l "$1" )"  != '0' ]
-        then
-            install+=("$1")
-        fi
+        modules=("netcat-openbsd" "tor" "bleachbit" "iptables" "zenity" "curl" "libnotify-bin")
+        for i in "${modules[@]}";
+        do
+            if [ "$(dpkg -l "$i" )"  != '0' ]
+            then
+                install+=("$i")
+            fi
+        done
     fi
 }
-programs "tor"
-programs "bleachbit"
-programs "iptables"
-programs "libnotify"
-programs "zenity"
-programs "curl"
-programs "openbsd-netcat"
+programs
 
 if [ -n "${install[*]}" ]
 then
