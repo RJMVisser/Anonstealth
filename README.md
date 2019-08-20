@@ -4,10 +4,12 @@ Anonsurf is a tool that will help you stay anonymous by routing every packet thr
 
 
 ## Pandora
-Pandora overwrites the RAM, clears the entire system cache and recudes the minimum number of kilobytes to keep free across the system.
+Pandora overwrites the RAM, clears the entire system cache and recudes the memory reclaim thresholds.
 
 
-# Install usage
+# Installation
+This package comes with an installer that makes things extremely easy:
 ```
 sudo bash ./install { --install or -i | --remove or -r }
 ```
+Once the installer is complete, you will be able to use both the anonsurf and pandora modules.
