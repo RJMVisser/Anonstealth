@@ -14,6 +14,6 @@ Pandora overwrites the RAM, clears the entire system cache and recudes the memor
 # Installation
 This package comes with an installer that makes things extremely easy:
 ```
-sudo bash ./install { --install or -i | --remove or -r }
+sudo bash ./installer { --install or -i | --remove or -r }
 ```
 Once the installer is complete, you will be able to use both the anonsurf and pandora modules.
