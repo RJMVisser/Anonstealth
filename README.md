@@ -1,4 +1,4 @@
-<p align="center">
+<p align="left">
   <img height="150" src="https://raw.githubusercontent.com/RJMVisser/Anonstealth/master/README/banner.png">
 </p>
 
