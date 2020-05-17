@@ -18,7 +18,7 @@ modules=()
 programs()
 {
     if [[ -f "/usr/bin/pacman" ]]; then
-        modules=("tor" "bleachbit" "iptables" "libnotify" "zenity" "curl" "openbsd-netcat")
+        modules=("iproute2" "geoiplookup" "tor" "bleachbit" "iptables" "libnotify" "zenity" "curl" "openbsd-netcat")
         for i in "${modules[@]}";
         do
             if [ -z "$(pacman -Q --color always "$i")" ]
