@@ -1,4 +1,8 @@
-# Tools
+<p align="center">
+  <img height="150" src="https://raw.githubusercontent.com/RJMVisser/Anonstealth/master/README/banner.png">
+</p>
+
+
 ## Anonsurf
 Anonsurf is a tool that will help you stay anonymous by routing every packet through TOR relay.
 
